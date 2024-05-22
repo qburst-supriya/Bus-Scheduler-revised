@@ -2,23 +2,22 @@
 import { ReactNode, Context } from 'react'
 
 
-export type StateType<T> = {
+export type BaseContextDataType<T> = {
     data: T,
 }
 
 export type ActionType<T> = {
-    type: string, payload: StateType<T>
+    type: string, payload: BaseContextDataType<T>
 }
 
-export type ContextValueType<T> = {
-    data: StateType<T>,
+export type BaseContextType<T> = BaseContextDataType<T> & {
     actions: object
 }
 
-export type ContextProviderType<T> = {
-    value: ContextValueType<T>,
+export type BaseContextProviderType<T> = {
+    value: BaseContextType<T>,
     children: ReactNode
-    Context: Context<ContextValueType<T>>
+    Context: Context<BaseContextType<T>>
 }
 
 

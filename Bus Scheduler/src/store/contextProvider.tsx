@@ -1,7 +1,7 @@
 import { Context, useContext, createContext } from 'react';
-import { ContextProviderType, ContextValueType } from './types';
+import { BaseContextProviderType, BaseContextType } from './types';
 
-export const createCustomContext = <T,>(value: T): Context<T> => {
+export const createBaseContext = <T,>(value: T): Context<T> => {
     return createContext(value);
 };
 
@@ -13,7 +13,7 @@ export const useCustomContext = <T,>(Context: Context<T>) => {
     return context;
 };
 
-export const ContextProvider = <T,>({ children, value, Context }: ContextProviderType<T>) => {
-    const ContextValue: ContextValueType<T> = value;
+export const BaseContextProvider = <T,>({ children, value, Context }: BaseContextProviderType<T>) => {
+    const ContextValue: BaseContextType<T> = value;
     return <Context.Provider value={ContextValue}>{children}</Context.Provider>;
 };
