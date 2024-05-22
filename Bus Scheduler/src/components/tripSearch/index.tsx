@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { useCustomContext } from '../../store/contextProvider';
-import { TripSearchContext } from './store/tripSearchProvider';
+import { useFetchTrips } from './store/hook';
 
 const TripSearch = () => {
-    const { data, actions } = useCustomContext(TripSearchContext);
-
-    useEffect(() => {
-        actions.listTrips({ data: { resultCount: 4, trips: [], message: '', success: false } });
-    }, []);
-    console.log(data);
-    return <>{data?.data?.resultCount}</>;
+    const tripList = useFetchTrips();
+    return (
+        <>
+            {`Count: ${tripList?.data?.resultCount}`}
+            {tripList.data?.trips.map((trip) => (
+                <li key={trip.id}> {`Bus Id ${trip.busId}`} </li>
+            ))}
+        </>
+    );
 };
 
 export default TripSearch;

@@ -17,3 +17,7 @@ export type TripListContextType = {
 export type TripSearchActionsType = {
   listTrips: (payload: TripListType) => void
 }
+
+export enum ActionKind {
+  'LIST_TRIP' = 'LIST_TRIP'
+}

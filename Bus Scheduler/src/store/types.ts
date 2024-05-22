@@ -1,5 +1,6 @@
 
 import { ReactNode, Context } from 'react'
+import { ActionKind } from '../components/tripSearch/store/types'
 
 
 export type BaseContextDataType<T> = {
@@ -7,7 +8,7 @@ export type BaseContextDataType<T> = {
 }
 
 export type ActionType<T> = {
-    type: string, payload: BaseContextDataType<T>
+    type: ActionKind, payload: BaseContextDataType<T>
 }
 
 export type BaseContextType<T> = BaseContextDataType<T> & {

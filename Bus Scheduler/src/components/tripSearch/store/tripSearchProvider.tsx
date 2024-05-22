@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BaseContextProvider, createBaseContext } from '../../../store/contextProvider';
-import { TripSearchActionsType, TripListContextType, TripListType } from './types';
+import { TripSearchActionsType, TripListContextType, TripListType, ActionKind } from './types';
 import { TripSearchReducer } from './reducer';
 import { BaseContextType } from '../../../store/types';
 
@@ -19,7 +19,7 @@ const TripSearchContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     const [data, dispatch] = React.useReducer(TripSearchReducer, initialData);
 
     const listTrips = (payload: TripListType) => {
-        dispatch({ type: 'LIST_DATA', payload: { ...payload } });
+        dispatch({ type: ActionKind.LIST_TRIP, payload: { ...payload } });
     };
     const actions: TripSearchActionsType = { listTrips };
     const contextvalue: BaseContextType<TripListType> = {
