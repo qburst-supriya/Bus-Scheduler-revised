@@ -1,4 +1,4 @@
-import TripSearch from '../../shared/components/tripSearch';
+import TripSearch from '@/shared/components/tripSearch';
 import { TripSearchContextProvider } from '../../shared/components/tripSearch/store/tripSearchProvider';
 
 const Home = () => {

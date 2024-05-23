@@ -6,8 +6,8 @@ export type BaseContextDataType<T> = {
     data: T,
 }
 
-export type ActionType<T> = {
-    type: string, payload: BaseContextDataType<T>
+export type ActionType<T, U> = {
+    type: U, payload: BaseContextDataType<T>
 }
 
 export type BaseContextType<T> = BaseContextDataType<T> & {
