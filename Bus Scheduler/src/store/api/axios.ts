@@ -12,11 +12,12 @@ const baseApi = axios.create({
 
 export const GET = <T>(url: string): Promise<T> => {
 
-  return baseApi.get(url)
+  const response: Promise<T> = baseApi.get(url)
     .then(response => {
-      const responseData: T = response?.data?.data
+      const responseData: T = response?.data
       return responseData
     })
+  return response;
 
 }
 

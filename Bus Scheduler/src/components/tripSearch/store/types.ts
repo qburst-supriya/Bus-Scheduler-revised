@@ -1,3 +1,4 @@
+import { BaseContextDataType } from "../../../store/types";
 
 export type TripListType =
   {
@@ -15,7 +16,7 @@ export type TripListContextType = {
 };
 
 export type TripSearchActionsType = {
-  listTrips: (payload: TripListType) => void
+  listTrips: (payload: BaseContextDataType<TripListType>) => void
 }
 
 export enum ActionKind {
