@@ -1,4 +1,4 @@
-import { useFetchTrips } from './store/hook';
+import { useFetchTrips } from './hooks/fetchTripsHook';
 
 const TripSearch = () => {
     const tripList = useFetchTrips();

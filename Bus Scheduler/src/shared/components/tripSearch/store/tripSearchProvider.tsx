@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { BaseContextProvider, createBaseContext } from '../../../store/contextProvider';
-import { TripSearchActionsType, TripListContextType, TripListType, ActionKind } from './types';
+import { BaseContextProvider, createBaseContext } from '../../../../store/contextProvider';
+import { TripSearchActionsType, TripListContextType, TripListType } from './types';
+import { BaseContextDataType, BaseContextType } from '../../../../store/types';
+import { ActionKind } from './enums';
 import { TripSearchReducer } from './reducer';
-import { BaseContextDataType, BaseContextType } from '../../../store/types';
 
 const initialData: TripListType = { data: { resultCount: 0, trips: [], message: '', success: false } };
 

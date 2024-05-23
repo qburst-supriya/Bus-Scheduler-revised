@@ -1,5 +1,7 @@
-import { ActionType } from "../../../store/types";
-import { ActionKind, TripListType } from "./types";
+import { ActionType } from "../../../../store/types";
+import { TripListType } from "./types";
+import { ActionKind } from "./enums";
+
 
 
 export const TripSearchReducer = (state: TripListType, action: ActionType<TripListType>): TripListType => {
