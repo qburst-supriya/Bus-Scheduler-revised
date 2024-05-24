@@ -1,5 +1,11 @@
-import { it, test } from "vitest";
+import { test } from "vitest";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import App from "./App";
 
-it("should work", (ctx) => {
-  console.log(ctx);
+describe("Test the App component", () => {
+  test("Site would be up shortly text should be there", () => {
+    render(<App />);
+    expect(screen.getByText(/Site would be up shortly/)).toBeInTheDocument();
+  });
 });
