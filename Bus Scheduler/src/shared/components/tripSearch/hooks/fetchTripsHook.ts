@@ -12,22 +12,11 @@ export const useFetchTrips = () => {
 
     const updateTripListStore = async () => {
         const response: BaseContextDataType<TripListType> = await GET(tripListApiUrl);
-        // response.then((response: BaseContextDataType<TripListType>) => {
         actions.listTrips(response);
-        // })
     }
 
     useEffect(() => {
-        // const fetchTrips = async (): Promise<BaseContextDataType<TripListType>> =>
-        //     await GET(tripListApiUrl);
-        // //
-        // // updateTripListStore()
-        // fetchTrips().then((response: BaseContextDataType<TripListType>) => {
-        //     actions.listTrips(response);
-        // })
-
         updateTripListStore();
-
     }, []);
     return data;
 }
