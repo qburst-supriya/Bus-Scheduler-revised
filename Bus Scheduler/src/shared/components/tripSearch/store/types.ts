@@ -13,7 +13,7 @@ type TripDataType =
     success?: boolean;
   };
 
-type TripListDataType =
+export type TripListDataType =
   {
     busId: string; id: number; busType: string; totalSeats: number; seatType: string
   };
