@@ -7,6 +7,7 @@ export const createBaseContext = <T,>(value: T): Context<T> => {
 
 export const useCustomContext = <T,>(Context: Context<T>) => {
     const context = useContext(Context);
+
     if (context === undefined) {
         throw new Error('useCustomContext must be used within a ContextProvider');
     }
