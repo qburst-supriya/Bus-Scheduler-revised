@@ -1,0 +1,13 @@
+.table-data-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.table-header-container{
+    display: flex;
+    justify-content: space-between;
+}
+.table-row-wrapper{
+    display: flex;
+    flex-direction: row;
+}
