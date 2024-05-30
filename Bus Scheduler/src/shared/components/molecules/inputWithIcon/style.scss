@@ -1,10 +1,13 @@
 @import '@/styles/index.scss';
 
 .inputWithIcon-container {
+    position: relative;
+    margin-right: 25px;
     i {
-        margin-left: -25px;
         color: $secondary-color;
-        margin-right: 25px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
     }
 
 }
