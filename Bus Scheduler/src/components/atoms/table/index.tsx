@@ -49,7 +49,7 @@ const generateRowItems = <T,>(row: DataType<T>, columns: ColumnType[]): (JSX.Ele
 const Table: FC<TableType<T>> = ({ data, columns }): JSX.Element | null => {
     return data.length && columns.length ? (
         <>
-            <div className="table-header-container"> {generateHeader(columns)}</div>
+            {/* <div className="table-header-container"> {generateHeader(columns)}</div> */}
             <div className="table-row-container"> {generateRows(data, columns)}</div>
         </>
     ) : null;

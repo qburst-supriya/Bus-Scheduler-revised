@@ -1,0 +1,24 @@
+@import '@/styles/index.scss';
+
+.form-container
+   {
+    display: flex;
+    align-items: center;
+
+    &.column{
+        flex-direction: column;
+       }
+        &.row{
+            flex-direction: row;
+          }
+        span {
+            margin-bottom: 10px;
+            color: $red;
+        }
+        input {
+        margin-bottom: 10px;
+        margin-right: 10px;
+
+        }
+    }
+   

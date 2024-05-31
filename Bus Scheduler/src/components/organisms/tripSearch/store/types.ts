@@ -1,11 +1,5 @@
-import { BaseContextDataType } from "../../../../store/types";
 
-export type TripListType =
-  {
-    data: TripDataType
-  };
-
-type TripDataType =
+export type TripDataType =
   {
     resultCount: number;
     trips: TripListDataType[];
@@ -19,12 +13,16 @@ export type TripListDataType =
   };
 
 export type TripListContextType = {
-  data: TripListType;
+  data: TripDataType;
   actions: TripSearchActionsType
 };
 
 export type TripSearchActionsType = {
-  listTrips: (payload: BaseContextDataType<TripListType>) => void
+  listTrips: (payload: TripDataType) => void,
+}
+
+export type ParamsType = {
+  startPoint: 'string', endPoint: 'string', date: 'string'
 }
 
 export type ActionKind =

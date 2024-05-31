@@ -1,22 +1,47 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { GET } from '@/services/api'
 import { tripListApiUrl } from '@/services/apiUrls'
 
 import { useCustomContext } from '@/store/contextProvider';
 import { TripSearchContext } from '@/components/organisms/tripSearch/store/tripSearchProvider';
-import { TripListType } from '@/components/organisms/tripSearch/store/types';
-import { BaseContextDataType } from '@/store/types';
+import { TripDataType } from '@/components/organisms/tripSearch/store/types';
 
 export const useFetchTrips = () => {
-    const { data, actions } = useCustomContext(TripSearchContext);
+    const navigate = useNavigate();
+
+    const { actions } = useCustomContext(TripSearchContext);
+    const [params, setParams] = useState<{
+        date
+        :
+        string
+        endPoint
+        :
+        string
+        startPoint
+        :
+        string
+    } | null>(null);
+
 
     const updateTripListStore = async () => {
-        const response: BaseContextDataType<TripListType> = await GET(tripListApiUrl);
+        const response: TripDataType = await GET(tripListApiUrl);
         actions.listTrips(response);
+        navigate('/triplist');
+
     }
 
     useEffect(() => {
-        updateTripListStore();
-    }, []);
-    return data;
+        params?.date && updateTripListStore();
+        setParams({
+            date
+                : '',
+            endPoint
+                :
+                '',
+            startPoint: ''
+        });
+    }, [params?.date]);
+    return setParams;
 }

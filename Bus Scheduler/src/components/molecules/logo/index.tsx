@@ -5,7 +5,7 @@ import Link from '@/components/atoms/link';
 const Logo = () => {
     return (
         <div className="logo-container">
-            <Link url="#">
+            <Link url="/">
                 <Image srcUrl={logo} altText="logo-icon"></Image>
             </Link>
         </div>

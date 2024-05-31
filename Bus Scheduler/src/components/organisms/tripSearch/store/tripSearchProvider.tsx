@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { BaseContextProvider, createBaseContext } from '@/store/contextProvider';
-import { TripSearchActionsType, TripListContextType, TripListType } from './types';
-import { BaseContextDataType, BaseContextType } from '@/store/types';
-import { TripSearchReducer } from './storeState';
+import { TripListContextType, TripDataType, TripSearchActionsType } from '@/components/organisms/tripSearch/store/types';
+import { TripSearchReducer } from '@/components/organisms/tripSearch/store/storeState';
 
-const initialData: TripListType = { data: { resultCount: 0, trips: [], message: '', success: false } };
+const initialData: TripDataType = { resultCount: 0, trips: [], message: '', success: false };
 
 const initialContextData: TripListContextType = {
     data: { ...initialData },
@@ -13,27 +11,21 @@ const initialContextData: TripListContextType = {
     },
 };
 
-const TripSearchContext: React.Context<TripListContextType> = createBaseContext<TripListContextType>(initialContextData);
+const TripSearchContext: React.Context<TripListContextType> = React.createContext(initialContextData);
 
 const TripSearchContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, dispatch] = React.useReducer(TripSearchReducer, initialData);
 
-    const listTrips = (payload: BaseContextDataType<TripListType>) => {
+    const listTrips = (payload: TripDataType) => {
         dispatch({ type: 'LIST_TRIP', payload });
     };
     const actions: TripSearchActionsType = { listTrips };
-    const contextvalue: BaseContextType<TripListType> = {
+    const contextValue: TripListContextType = {
         data,
         actions,
     };
 
-    const ContextObject = TripSearchContext as unknown as React.Context<BaseContextType<TripListType>>;
-
-    return (
-        <BaseContextProvider value={contextvalue} Context={ContextObject}>
-            {children}
-        </BaseContextProvider>
-    );
+    return <TripSearchContext.Provider value={contextValue}>{children}</TripSearchContext.Provider>;
 };
 
 export { TripSearchContext, TripSearchContextProvider };

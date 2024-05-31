@@ -1,7 +1,9 @@
+import '@/components/atoms/button/style.scss';
+
 type ButtonType = {
-    type: 'submit' | 'reset' | 'button' | undefined;
-    btnText: string;
-    onClick: () => void;
+    type?: 'submit' | 'reset' | 'button' | undefined;
+    btnText: string | undefined;
+    onClick?: () => void;
 };
 const Button = ({ type, btnText, onClick }: ButtonType) => {
     return (

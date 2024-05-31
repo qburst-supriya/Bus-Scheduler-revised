@@ -1,14 +1,14 @@
-import { ActionType } from "../../../../store/types";
-import { TripListType, ActionKind } from "./types";
+import { ActionType } from "@/store/types";
+import { TripDataType, ActionKind } from "./types";
 
 
 
-export const TripSearchReducer = (state: TripListType, action: ActionType<TripListType, ActionKind>): TripListType => {
-  switch (action.type) {
-    case "LIST_TRIP": {
-      return action.payload as unknown as TripListType;
+export const TripSearchReducer = (state: TripDataType, action: ActionType<TripDataType, ActionKind>): TripDataType => {
+    switch (action.type) {
+        case "LIST_TRIP": {
+            return action.payload;
+        }
+        default:
+            return state;
     }
-    default:
-      return state;
-  }
 };
