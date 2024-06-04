@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
-import { baseApi } from './api'
-import { ApiErrorMessages } from './enums'
+import { baseApi } from '@/services/api'
+import { ApiErrorMessages } from '@/services/enums'
 
 // Request interceptor
 baseApi.interceptors.request.use(

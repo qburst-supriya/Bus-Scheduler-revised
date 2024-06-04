@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from '@/components/layouts/home/components';
-import TripList from '@/components/layouts/tripList/components';
+import Home from '@/components/features/home/components';
+import TripList from '@/components/features/tripList/components';
 
 const AppRouter = () => {
     return (
