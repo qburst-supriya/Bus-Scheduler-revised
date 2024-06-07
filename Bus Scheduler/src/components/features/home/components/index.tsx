@@ -10,11 +10,10 @@ const Home: FC = () => {
     return (
         <>
             <FullScreen>
-                <div className="home-banner">
-                    <TripSearchContextProvider>
-                        <TripSearch style="column"></TripSearch>
-                    </TripSearchContextProvider>
-                </div>
+                <div className="home-banner"></div>
+                <TripSearchContextProvider>
+                    <TripSearch style="row"></TripSearch>
+                </TripSearchContextProvider>
                 <div className="home-text-container">
                     <h4>Online Bus Booking Services</h4>
                     <p>

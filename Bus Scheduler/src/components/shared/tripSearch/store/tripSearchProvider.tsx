@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { TripListContextType, TripDataType, TripSearchActionsType } from '@/components/shared/tripSearch/store/types';
+import { TripListContextType, TripData, TripSearchActionsType } from '@/components/shared/tripSearch/store/types';
 import { TripSearchStore } from '@/components/shared/tripSearch/store/storeState';
 
-const initialData: TripDataType = { resultCount: 0, trips: [], message: '', success: false };
+const initialData: TripData = { resultCount: 0, trips: [], message: '', success: false };
 
 const initialContextData: TripListContextType = {
     data: { ...initialData },
@@ -16,7 +16,7 @@ const TripSearchContext: React.Context<TripListContextType> = React.createContex
 const TripSearchContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, dispatch] = React.useReducer(TripSearchStore, initialData);
 
-    const listTrips = (payload: TripDataType) => {
+    const listTrips = (payload: TripData) => {
         dispatch({ type: 'LIST_TRIP', payload });
     };
     const actions: TripSearchActionsType = { listTrips };

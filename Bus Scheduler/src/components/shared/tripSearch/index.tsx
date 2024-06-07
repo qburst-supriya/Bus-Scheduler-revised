@@ -1,23 +1,42 @@
+import { createSearchParams, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+
 import '@/components/shared/tripSearch/style.scss';
 import Form from '@/components/shared/form';
-import { useFetchTrips } from '@/components/shared/tripSearch/hooks/fetchTripsHook';
 import { ParamsType } from '@/components/shared/tripSearch/store/types';
+import { memo } from 'react';
 
 type TripSearchType = {
     style: 'column' | 'row';
 };
+
 const TripSearch = ({ style }: TripSearchType) => {
-    const setParams = useFetchTrips();
+    const navigate = useNavigate();
+    const currentUrl = useLocation();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const values: ParamsType = {
+        startPoint: searchParams.get('startPoint') as string | '',
+        endPoint: searchParams.get('endPoint') as string | '',
+        date: searchParams.get('date') as string | '',
+    };
 
     return (
         <>
             <div className={`tripSearch-container ${style}`}>
                 {style === 'column' && <h3>Online bus booking</h3>}
-                <Form
+                <Form<ParamsType>
                     style={style}
-                    inputs={{ startPoint: 'string', endPoint: 'string', date: 'string' }}
+                    defaultData={values}
                     buttonSubmit={(data: ParamsType) => {
-                        setParams(data);
+                        if (currentUrl.pathname === '/triplist') {
+                            setSearchParams(data);
+                            window.location.reload();
+                        } else {
+                            navigate({
+                                pathname: '/triplist',
+                                search: createSearchParams(data).toString(),
+                            });
+                        }
                     }}
                     fields={[
                         {
@@ -56,4 +75,4 @@ const TripSearch = ({ style }: TripSearchType) => {
     );
 };
 
-export default TripSearch;
+export default memo(TripSearch);

@@ -1,34 +1,39 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm, SubmitHandler, FieldValues, DefaultValues } from 'react-hook-form';
 
 import Button from '@/components/ui/button/Button';
-import Input from '@/components/ui/input';
+import FormInput from '@/components/shared/form/formInput';
 import '@/components/shared/form/style.scss';
 
 type FormType<T> = {
     buttonSubmit: (data: T) => void;
-    fields: InputTypes[];
-    inputs: T;
+    fields: InputFieldTypes[];
     style: 'column' | 'row';
+    defaultData: FieldValues;
 };
 
-type InputTypes = {
+type InputFieldTypes = {
     type: string;
     placeholder?: string;
     name: string;
     options?: OptionsType;
     btnText?: string;
+    value?: string | '';
 };
 type OptionsType = {
     required: boolean;
 };
 
-const Form = <T,>({ buttonSubmit, fields, inputs, style }: FormType<T>) => {
+const Form = <T extends FieldValues>({ buttonSubmit, fields, style, defaultData }: FormType<T>) => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<typeof inputs>();
-    const onSubmit: SubmitHandler<typeof inputs> = (data) => buttonSubmit(data);
+    } = useForm<T>({
+        defaultValues: { ...defaultData } as DefaultValues<T>,
+    });
+    const onSubmit: SubmitHandler<T> = (data) => {
+        buttonSubmit(data);
+    };
     return (
         <form className={`form-container ${style}`} onSubmit={handleSubmit(onSubmit)}>
             {fields.map((field) => {
@@ -37,21 +42,21 @@ const Form = <T,>({ buttonSubmit, fields, inputs, style }: FormType<T>) => {
                     case 'text':
                     case 'password':
                         return (
-                            <>
-                                <Input
+                            <div key={'div' + field.name}>
+                                <FormInput
+                                    name={field.name}
                                     key={field.name}
                                     type={field.type}
                                     placeholder={field.placeholder}
-                                    {...register(field.name, { ...field.options })}
-                                ></Input>
+                                    options={{ ...register(field.name as never, { ...field.options }) }}
+                                ></FormInput>
                                 {errors[field.name] && <span>This field is required</span>}
-                            </>
+                            </div>
                         );
                         break;
                     case 'button':
                     case 'submit':
                         return <Button key={field.name} type={field.type} btnText={field.btnText}></Button>;
-                        break;
                     default:
                         return null;
                 }

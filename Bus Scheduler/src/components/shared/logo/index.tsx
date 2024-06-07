@@ -1,6 +1,6 @@
 import Image from '@/components/ui/image';
 import logo from '@/assets/logo.png';
-import '@/components/customComponents/logo/style.scss';
+import '@/components/shared/logo/style.scss';
 import Link from '@/components/ui/link';
 const Logo = () => {
     return (

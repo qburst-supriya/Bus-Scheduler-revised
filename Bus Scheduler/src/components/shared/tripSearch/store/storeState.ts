@@ -1,9 +1,9 @@
 import { ActionType } from "@/store/types";
-import { TripDataType, ActionKind } from "@/services/types";
+import { TripData, ActionKind } from "@/components/shared/tripSearch/store/types";
 
 
 
-export const TripSearchStore = (state: TripDataType, action: ActionType<TripDataType, ActionKind>): TripDataType => {
+export const TripSearchStore = (state: TripData, action: ActionType<TripData, ActionKind>): TripData => {
     switch (action.type) {
         case "LIST_TRIP": {
             return action.payload;

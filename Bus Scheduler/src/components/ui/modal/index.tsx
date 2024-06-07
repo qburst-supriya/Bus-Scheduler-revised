@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom';
 
 import '@/components/ui/modal/style.scss';
 
-type ModalProps = { show: boolean };
+type ModalProps = { show: boolean; close: () => void; title: string; children: JSX.Element };
 
-const Modal: FC<ModalProps<T>> = ({ show, close, title, children }): JSX.Element => {
+const Modal: FC<ModalProps> = ({ show, close, title, children }): JSX.Element => {
     return createPortal(
         <>
             <div className={`modalContainer ${show ? 'show' : ''} `} onClick={() => close()}>
@@ -18,7 +18,7 @@ const Modal: FC<ModalProps<T>> = ({ show, close, title, children }): JSX.Element
                 </div>
             </div>
         </>,
-        document.getElementById('modal')
+        document.getElementById('modal') as HTMLElement
     );
 };
 

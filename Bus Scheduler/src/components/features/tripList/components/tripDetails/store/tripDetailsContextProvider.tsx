@@ -1,12 +1,8 @@
 import * as React from 'react';
-import {
-    TripDetailsActionsType,
-    TripDetailsContextType,
-    TripDetailsDataType,
-} from '@/components/features/tripList/components/tripDetails/store/types';
+import { TripDetailsActionsType, TripDetailsContextType, TripDetailsData } from '@/components/features/tripList/components/tripDetails/store/types';
 import { TripDetailsStore } from '@/components/features/tripList/components/tripDetails/store/storeState';
 
-const initialData: TripDetailsDataType = { bookings: [], message: '', success: false };
+const initialData: TripDetailsData = { bookings: [], totalSeats: 0, message: '', success: false };
 
 const initialContextData: TripDetailsContextType = {
     data: { ...initialData },
@@ -20,7 +16,7 @@ const TripDetailsContext: React.Context<TripDetailsContextType> = React.createCo
 const TripDetailsContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [data, dispatch] = React.useReducer(TripDetailsStore, initialData);
 
-    const setTripDetailsData = (payload: TripDetailsDataType) => {
+    const setTripDetailsData = (payload: TripDetailsData) => {
         dispatch({ type: 'FETCH_DATA', payload });
     };
     const actions: TripDetailsActionsType = { setTripDetailsData };

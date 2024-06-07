@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { seatIcons } from '@/components/features/tripList/components/seatLayout/config';
+import { SeatTypes, seatIcons } from '@/components/features/tripList/components/seatLayout/config';
 import '@/components/features/tripList/components/seatLayout/style.scss';
 import { useCustomContext } from '@/store/contextProvider';
 import { TripDetailsContext } from '../tripDetails/store/tripDetailsContextProvider';
@@ -14,12 +14,12 @@ const SeatLayout: FC<SeatLayoutType> = ({ type }) => {
     const [totalseatsSelected, setTotalseatsSelected] = useState<number[] | []>([]);
 
     const { data } = useCustomContext(TripDetailsContext);
-    const seatcount = data?.data?.trip?.totalSeats;
-    const bookings = data?.data?.trip?.bookings;
+    const seatcount = data?.totalSeats;
+    const bookings = data?.bookings;
     const columnCount = 4;
     const rowCount = seatcount / columnCount;
     const remainingSeats = seatcount % columnCount;
-    const icons = seatIcons[type];
+    const icons = seatIcons[type as SeatTypes];
 
     const updateSeatSelection = (id: number, isSelected: boolean) => {
         if (isSelected) {
@@ -32,11 +32,11 @@ const SeatLayout: FC<SeatLayoutType> = ({ type }) => {
 
     const generateLayout = () => {
         let seatNumber = 0;
-        let seatList = [];
+        const seatList = [];
         for (let i = 0; i < columnCount + remainingSeats; i++) {
             for (let j = 0; j < rowCount; j++) {
                 seatNumber++;
-                const isBooked = bookings?.find((item) => (item.seatNumber === seatNumber.toString() ? true : false));
+                const isBooked = bookings?.find((item) => item.seatNumber === seatNumber) ? true : false;
                 seatList.push(
                     <SingleSeat
                         icons={icons}

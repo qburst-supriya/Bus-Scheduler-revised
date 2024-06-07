@@ -1,15 +1,16 @@
 import { FC, useState } from 'react';
 
 import '@/components/features/tripList/components/seatLayout/sleeper/style.scss';
+import { iconsType } from '@/components/features/tripList/components/seatLayout/config';
 
 export type singleSeatPropType = {
-    icon: string;
+    icons: iconsType;
     seatNumber: number;
     isBooked: boolean;
-    onClick: (_id: number, _isSelected: boolean) => void;
+    seatSelectionHandler: (_id: number, _isSelected: boolean) => void;
 };
 
-const SingleSeat: FC = ({ seatNumber, seatSelectionHandler, icons, isBooked }) => {
+const SingleSeat: FC<singleSeatPropType> = ({ seatNumber, seatSelectionHandler, icons, isBooked }) => {
     const [url, setUrl] = useState(isBooked ? icons.bookedIcon : icons.normalIcon);
     const [isSelected, setSelected] = useState(false);
     const name = `seat${seatNumber}`;

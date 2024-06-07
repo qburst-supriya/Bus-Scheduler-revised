@@ -1,29 +1,29 @@
 
-export type TripDataType =
+export type TripData =
   {
     resultCount: number;
-    trips: TripListDataType[];
+    trips: TripListData[];
     message?: string;
     success?: boolean;
   };
 
-export type TripListDataType =
+export type TripListData =
   {
     busId: string; id: number; busType: string; totalSeats: number; seatType: string
   };
 
 export type TripListContextType = {
-  data: TripDataType;
+  data: TripData;
   actions: TripSearchActionsType
 };
 
 export type TripSearchActionsType = {
-  listTrips: (payload: TripDataType) => void,
+  listTrips: (payload: TripData) => void,
 }
 
-export type ParamsType = {
-  startPoint: 'string', endPoint: 'string', date: 'string'
-}
+export type ParamsType =
+  { startPoint: string | ''; endPoint: string | ''; date: string | '' }
+
 
 export type ActionKind =
   'LIST_TRIP'
