@@ -1,0 +1,28 @@
+@import '@/styles/index.scss';
+
+
+.loader-container
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+    opacity: 0.3;
+    background-color: $primary-color;
+
+
+    &show{
+        display: block;
+    }
+    &hide{
+        display: none;
+    }
+
+}

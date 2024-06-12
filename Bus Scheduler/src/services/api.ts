@@ -1,27 +1,53 @@
 import axios from "axios";
 import { baseApiUrl } from "./apiUrls";
+import { AxiosError } from "axios";
+import { ApiErrorMessages } from '@/services/enums'
 
 
-export const baseApi = axios.create({
+
+const baseApi = axios.create({
   baseURL: baseApiUrl,
   headers: {
-    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
   },
 });
 
 
-export const GET = <T>(url: string): Promise<T> => {
 
-  const response: Promise<T> = baseApi.get(url)
-    .then(response => {
-      const responseData: T = response?.data
-      return responseData
-    })
-  return response;
+// Request interceptor
+baseApi.interceptors.request.use(
+  (config) => {
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  },
+);
 
-}
+
+// Response interceptor
+baseApi.interceptors.response.use(
+  (response) => {
+    return response?.data?.data
+  },
+  (error: AxiosError) => {
+
+    switch (error.response?.status) {
+      case 404:
+        console.error(ApiErrorMessages.NotFound);
+        break;
+      case 401:
+        console.error(ApiErrorMessages.Unauthorized);
+        break;
+      default:
+        Promise.reject(error);
+    }
+  },
+);
 
 
 
+export default baseApi
 
 

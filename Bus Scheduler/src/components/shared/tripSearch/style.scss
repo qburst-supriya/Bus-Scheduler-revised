@@ -1,0 +1,30 @@
+@import '@/styles/index.scss';
+
+.tripSearch-container {
+    background-color: $primary-color;
+    padding: 40px 2px 20px 10px;
+    text-align: center;
+    &.column{
+        margin-left: 163px;
+        flex-direction: column;
+        width: 261px;
+    }
+    &.row {
+    flex-direction: row;
+    width: 99%;
+
+    }
+    h3 {
+        color: $white;
+        font-size: 16px;
+    }
+    input {
+        border-radius: 3px;
+        width: 70%;
+    }
+    button {
+        width: 105px;
+
+    }
+   
+}

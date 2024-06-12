@@ -1,0 +1,68 @@
+@import '@/styles/index.scss';
+
+.modalContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color: $black, $alpha: 0.35);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+  
+    .modal {
+      width: 518px;
+      height: 482px;
+      padding: 2rem;
+      border-radius: 20px;
+  
+      background-color: $gray-light;
+      backdrop-filter: blur(20px);
+  
+      &_header {
+        position: relative;
+        display: flex;
+    align-items: center;
+    justify-content: space-around;
+        &-title {
+          text-align: center;
+        }
+
+        .modal_header-title {
+          font-family: 25px;;
+        }
+  
+        .close {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: transparent;
+  
+          img {
+            width: 1rem;
+            height: auto;
+            transition: all 0.3s;
+          }
+          &:hover {
+            img {
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+  
+    }
+    
+       
+  }
+  
+  .modalContainer.show {
+    visibility: visible;
+    opacity: 1;  
+  }
